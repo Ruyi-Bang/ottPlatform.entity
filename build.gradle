@@ -13,11 +13,11 @@ repositories {
 }
 
 dependencies {
-    implementation platform("RuyiBang:ottPlatform.root:1.0.X")
-    annotationProcessor platform("RuyiBang:ottPlatform.root:1.0.X")
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-    compileOnly "org.projectlombok:lombok"
-    annotationProcessor "org.projectlombok:lombok"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${libs.versions.springBoot.get()}"
+    implementation "ch.qos.logback:logback-classic:${libs.versions.logback.get()}"
+    implementation "ch.qos.logback:logback-core:${libs.versions.logback.get()}"
+    compileOnly "org.projectlombok:lombok:${libs.versions.lombok.get()}"
+    annotationProcessor "org.projectlombok:lombok:${libs.versions.lombok.get()}"
 }
 
 test {
