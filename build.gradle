@@ -1,0 +1,47 @@
+plugins {
+    id 'java-library'
+    alias(libs.plugins.dependencyManagement)
+    id 'maven-publish'
+}
+
+group = 'RuyiBang'
+version = '1.0.X'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("RuyiBang:ottPlatform.root:1.0.X")
+    annotationProcessor platform("RuyiBang:ottPlatform.root:1.0.X")
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    compileOnly "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        // For local development
+        mavenLocal()
+
+        // Optional remote publishing (for CI/CD)
+        // maven {
+        //     url = uri("https://your.company.repo/releases")
+        //     credentials {
+        //         username = findProperty("repoUser") ?: System.getenv("REPO_USER")
+        //         password = findProperty("repoPass") ?: System.getenv("REPO_PASS")
+        //     }
+        // }
+    }
+}
